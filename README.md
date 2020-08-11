@@ -1,15 +1,11 @@
 # TingTing
+---
 
 TingTing is my friends!
 
-It just Simple Aduino project!
+It just Simple Deep Learning and Machine Learning project!
 
-TingTing can feel your touch! and can feel happiness!
-
-If you hit it, it will be feel sad..
+TingTing can watch you and free talking!
 
 Enjoy project
 
-# Implement to date
-
-Now, Aduino was not delivered to me yet.
