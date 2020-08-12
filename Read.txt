@@ -1,0 +1,10 @@
+Eye : 36 ~ 48
+Left Eye : 36~42
+Right Eye : 42~48
+
+
+camera:
+x : 400
+y : 225
+
+TingTing Image(300,1100)
