@@ -6,10 +6,11 @@ import argparse
 import numpy as np
 
 from imutils import face_utils
+from FacialLandMark import *
 
 
 detector = dlib.get_frontal_face_detector()
-predictor = dlib.shape_predictor(os.path.join(".","shape_predictor_68_face_landmarks.dat"))
+predictor = dlib.shape_predictor(os.path.join(".","_data","shape_predictor_68_face_landmarks.dat"))
 
 print("[INFO] camera sensor warming up...")
 
@@ -38,6 +39,7 @@ while True:
     frame = imutils.resize(frame, width=400)
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     rects = detector(gray, 0)
+    new_frame = np.random.randint(0,256,(Height, Width, 3), dtype=np.uint8)
 
     for rect in rects:
 
@@ -52,6 +54,7 @@ while True:
             cv2.circle(frame, (x, y), 1, (0, 0, 255), -1)
 
     out.write(frame) 
+    cv2.imshow("New Frame", new_frame)
     cv2.imshow("Frame", frame)
     cv2.resizeWindow("Frame",Width,Height)
         
