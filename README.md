@@ -1,5 +1,4 @@
 # TingTing
----
 
 TingTing is my friends!
 
