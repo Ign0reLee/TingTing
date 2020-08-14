@@ -30,6 +30,7 @@ out = cv2.VideoWriter('./save.avi', fourcc ,20.0, (Width,Height))
 tingting = TingTing()
 objx = 0
 objy = 0
+counter = 0
 
 
 
@@ -49,15 +50,39 @@ while True:
         shape = face_utils.shape_to_np(shape)
         (x, y, w, h) = face_utils.rect_to_bb(rect)
         cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+        """
         objx = (2 * x + w)//2
         objy = (2 * y + h)//2
-        
+        """
         for (x, y) in shape:
             cv2.circle(frame, (x, y), 1, (0, 0, 255), -1)
-   
+        
+        eye = shape[36:48]
+        eye_max = np.max(eye, axis=0)
+        eye_min = np.min(eye, axis=0)
+        objx, objy = np.add(eye_max, eye_min) / 2
 
+    if move:  # For Counter Initialization
+        counter = 0
+    else:             # If Not See The Face
+        counter += 1
+    
+    if counter > 30: #If Camer can't see Face Over 30 Sec
+        move = True # Moving to Center
+        objx = tingting.Camera_X//2 #Camera Window Center
+        objy = tingting.Camera_Y//2 # Camera Window Center
+
+        cx, cy = tingting.make_object(objx, objy)
+
+        """If counter > 30 and TingTing went to center"""
+        if abs(tingting.centerX - cx) <2 and abs(tingting.centerY-cy) < 2:
+            counter = 0
+            move = False
+
+   
     TingTing_frame = tingting.Make_Face(0, move, objx, objy)
     #out.write(frame) 
+    TingTing_frame = cv2.flip(TingTing_frame, 1)
     cv2.imshow("TingTing", TingTing_frame)
     cv2.imshow("TingTing's See", frame)
 

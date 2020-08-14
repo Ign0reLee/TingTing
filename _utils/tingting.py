@@ -1,4 +1,5 @@
 import numpy as np
+import math
 import cv2, os
 import glob
 
@@ -37,8 +38,18 @@ class TingTing():
     def moving(self, objx, objy):
 
         space = 10
-        moveX = (self.centerX - objx) // 10
-        moveY = (self.centerY - objy) // 10
+        moveX = (objx - self.centerX ) / 10
+        moveY = (self.centerY - objy) / 10
+
+        if moveX >0: 
+            moveX = math.ceil(moveX)
+        else: 
+            moveX = math.floor(moveX)
+        if moveY >0: 
+            moveY = math.ceil(moveY)
+        else: 
+            moveY = math.floor(moveY)
+
 
         print("Object X : ",objx)
         print("Object Y : ", objy)
@@ -46,7 +57,8 @@ class TingTing():
         print("Center Y : ", self.centerY)
         print("Moving X : ",moveX)
         print("Moving Y : ",moveY)
-
+ 
+        
         self.ymin -= moveY
         self.ymax -= moveY
         self.xmin += moveX
@@ -54,7 +66,7 @@ class TingTing():
 
         if self.xmin < 0:
             self.xmin =0
-            self.xmax = self.Image_W +0
+            self.xmax = self.Image_W
 
         if self.xmax > self.Window_W:
             self.xmax = self.Window_W
@@ -67,6 +79,9 @@ class TingTing():
         if self.ymax > self.Window_H-space:
             self.ymax = self.Window_H -space
             self.ymin = self.Window_H - self.Image_H-space
+
+        self.centerX = int((self.xmin + self.xmax)/2)
+        self.centerY = int((self.ymin + self.ymax)/2)
         
     def make_object(self, objx, objy):
 
