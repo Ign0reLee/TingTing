@@ -15,9 +15,10 @@ Enjoy project
 
 ### Facial LandMark
 
-![Facial LandMark Test](./_Test/FacialLandMark.gif | width=100)
+<img src="./_Test/FacialLandMark.gif" width="100"/>
 
 
 ### TingTing's Eye
 
-![TingTing's Eye](./_Test/TingTing.gif | width = 100)
+
+<img src="./_Test/TingTing.gif" width="100"/>
