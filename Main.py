@@ -28,34 +28,38 @@ fourcc = cv2.VideoWriter_fourcc(*'DIVX')
 out = cv2.VideoWriter('./save.avi', fourcc ,20.0, (Width,Height))
 """
 tingting = TingTing()
+objx = 0
+objy = 0
 
 
 
 while True:
 
+    move = False
     ret, frame = cap.read()
     
     frame = imutils.resize(frame, width=400)
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     rects = detector(gray, 0)
-    new_frame = tingting.Make_Face(2)
+    
 
     for rect in rects:
-
+        move = True
         shape = predictor(gray, rect)
         shape = face_utils.shape_to_np(shape)
         (x, y, w, h) = face_utils.rect_to_bb(rect)
         cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+        objx = (2 * x + w)//2
+        objy = (2 * y + h)//2
         
         for (x, y) in shape:
             cv2.circle(frame, (x, y), 1, (0, 0, 255), -1)
    
 
-
-
+    TingTing_frame = tingting.Make_Face(0, move, objx, objy)
     #out.write(frame) 
-    cv2.imshow("New Frame", new_frame)
-    cv2.imshow("Frame", frame)
+    cv2.imshow("TingTing", TingTing_frame)
+    cv2.imshow("TingTing's See", frame)
 
         
             
