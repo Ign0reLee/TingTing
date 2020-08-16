@@ -7,6 +7,24 @@ import glob
 class TingTing():
     
     def __init__(self):
+        """
+        Set TingTing's default size
+        Window_W : TingTing's Face Size Width
+        Window_H : TingTing's Face Size Height
+        Image_W  : TingTing's Image Size Width
+        Image_H  : TingTing's Image Size Height
+        Camera_X : Webcam Camera Size
+        Camera_Y : Webcam Camer Size
+
+        In my case, Window size 1680 * 960, TingTing's Image size 1100*300, Wecam Camera size 400 * 255
+
+        Define TingTing's Information
+
+        ymin, ymax, xmin, xmax : TingTing's position
+        centerX, centerY       : TingTing's center position
+        waggle                 : TingTing's Waggling factor
+        waggle_state           : TingTing's Waggling State Factor
+        """
 
         self.Window_W = 1680
         self.Window_H = 960
@@ -24,6 +42,13 @@ class TingTing():
     
 
     def Image_Load(self):
+        """
+        Load TingTing's all image
+
+        I have 4 Images of TingTing but if load it by python command, it shuffle
+
+        So I made load each name directly
+        """
 
         static = [ "Normal.png", "Sad.png", "Love.png", "Sleep.png"]
         path = os.path.join("_image")
@@ -36,9 +61,22 @@ class TingTing():
         return img
 
     def moving(self, objx, objy):
+        """
+        Move TingTing's Image to (objx,objy)
+        
+        It moves linearly and moves about a tenth of the total distance.
+
+        It works under a few conditions.
+
+        First of all, because of the wagle, the y-axis always moves with 10 pixels of free space.
+
+        Also, the horizontal axis cannot deviate from the full size of the image.
+
+        Finally, always update center.
+        """
 
         space = 10
-        moveX = (objx - self.centerX ) / 10
+        moveX = (self.centerX - objx ) / 10
         moveY = (self.centerY - objy) / 10
 
         if moveX >0: 
@@ -61,8 +99,8 @@ class TingTing():
         
         self.ymin -= moveY
         self.ymax -= moveY
-        self.xmin += moveX
-        self.xmax += moveX
+        self.xmin -= moveX
+        self.xmax -= moveX
 
         if self.xmin < 0:
             self.xmin =0
