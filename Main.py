@@ -86,9 +86,9 @@ while True:
     cv2.imshow("TingTing's See Big", big_frame)
 
     if rects:
-        previous_move = False
-    else:
         previous_move = move
+    else:
+        previous_move = False
             
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
