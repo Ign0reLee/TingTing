@@ -25,13 +25,13 @@ I promise upload it as soon as I finish it.
 
 ### Facial LandMark
 
-<amp-img src="./_Test/FacialLandMark.gif" width="300"/>
+<img src="./_Test/FacialLandMark.gif" width="300"/>
 
 
 ### TingTing's Eye
 
 
-<amp-img src="./_Test/TingTing.gif" width="300"/>
+<img src="./_Test/TingTing.gif" width="300"/>
 
 
 # TingTing Result
@@ -44,13 +44,13 @@ This is because of the difference between the webcam screen and the actual envir
 
 follow the webcam's eye
 
-<amp-img src="./_Test/FollowEye.gif" width="300"/>
+<img src="./_Test/FollowEye.gif" width="300"/>
 
 ### Come back eye
 
 If there is no eye in the screen, come back the center
 
-<amp-img src="./_Test/CombackEye.gif" width="300"/>
+<img src="./_Test/CombackEye.gif" width="300"/>
 
 ### Re Follow the eye
 
@@ -58,7 +58,7 @@ When the eyes reappear, following them again does not perform well.
 
 Because there was a frame that couldn't track the face in the dlib
 
-<amp-img src="./_Test/ReFollowEye.gif" width="300"/>
+<img src="./_Test/ReFollowEye.gif" width="300"/>
 
 
 # Reference
