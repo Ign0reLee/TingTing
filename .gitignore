@@ -1,1 +1,3 @@
 ./_utils/.ipynb_checkpoints/*
+.ipynb_checkpoints/*
+*.ipynb
